@@ -19,6 +19,7 @@ function verificarChute() {
       "p",
       `Voce descobriu o numero secreto, com ${tentativas} ${mensagem}`
     );
+    document.getElementById("reiniciar").removeAttribute("disabled");
   } else {
     if (chute > numeroSecreto) {
       exibirTexto("p", "O numero secreto e Menor!");
