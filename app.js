@@ -6,6 +6,11 @@ function exibirTexto(tag, texto) {
   campo.innerHTML = texto;
 }
 
+function textoInicio() {
+  exibirTexto("h1", "Jogo do numero secreto");
+  exibirTexto("p", "Escolha o numero entre 1 e 10");
+}
+
 function gerarNumero() {
   return parseInt(Math.random() * 10 + 1);
 }
@@ -13,6 +18,7 @@ function gerarNumero() {
 function verificarChute() {
   let chute = document.querySelector("input").value;
   let mensagem = tentativas > 1 ? "Tentativas" : "Tentativa";
+
   if (chute == numeroSecreto) {
     exibirTexto("h1", "Acertou!");
     exibirTexto(
@@ -27,10 +33,21 @@ function verificarChute() {
       exibirTexto("p", "O numero secreto e Maior!");
     }
   }
+
   tentativas++;
+  limparCampo();
 }
 
-function reinciarJogo() {}
+function limparCampo() {
+  chute = document.querySelector("input");
+  chute.value = "";
+}
+function reinciarJogo() {
+  numeroSecreto = gerarNumero();
+  limparCampo();
+  tentativas = 1;
+  textoInicio();
+  document.getElementById("reiniciar").setAttribute("disabled", true);
+}
 
-exibirTexto("h1", "Jogo do numero secreto");
-exibirTexto("p", "Escolha o numero entre 1 e 10");
+textoInicio();
