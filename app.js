@@ -1,3 +1,5 @@
+let numerosSorteados = [];
+let limite = 10;
 let numeroSecreto = gerarNumero();
 let tentativas = 1;
 
@@ -8,11 +10,23 @@ function exibirTexto(tag, texto) {
 
 function textoInicio() {
   exibirTexto("h1", "Jogo do numero secreto");
-  exibirTexto("p", "Escolha o numero entre 1 e 10");
+  exibirTexto("p", `Escolha o numero entre 1 e ${limite}`);
 }
 
 function gerarNumero() {
-  return parseInt(Math.random() * 10 + 1);
+  let numeroSorteado = parseInt(Math.random() * limite + 1);
+
+  if (numerosSorteados.length == limite) {
+    numerosSorteados = [];
+  }
+
+  if (numerosSorteados.includes(numeroSorteado)) {
+    return gerarNumero();
+  } else {
+    numerosSorteados.push(numeroSorteado);
+    console.log(numerosSorteados);
+    return numeroSorteado;
+  }
 }
 
 function verificarChute() {
